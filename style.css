@@ -1,16 +1,17 @@
 /* ============================================
-   Study EU BD — shared stylesheet
-   Theme: passport / visa-stamp identity
+   Study EU BD — premium dark stylesheet
+   Theme: departure board / midnight visa stamp
    ============================================ */
 
 :root {
-  --ink: #1B2A4A;        /* deep indigo — passport cover */
-  --paper: #F7F4EC;      /* warm paper */
-  --paper-dim: #EDE8DA;
-  --gold: #B08D57;       /* brass / visa-stamp gold */
-  --stamp: #B23A2E;      /* stamp-ink red for accents */
-  --line: #D8D1BC;
-  --text-soft: #4B5568;
+  --bg: #0A0E1A;          /* near-black navy — night sky */
+  --bg-panel: #12172A;    /* card / panel background */
+  --bg-panel-hover: #171E38;
+  --ink: #ECE9DF;         /* warm off-white text */
+  --text-soft: #9AA3B8;   /* muted secondary text */
+  --gold: #D4A72C;        /* departure-board amber */
+  --stamp: #E0623F;       /* warm stamp-ink accent */
+  --line: #232A44;
 
   --display: "Fraunces", Georgia, serif;
   --body: "Inter", system-ui, -apple-system, sans-serif;
@@ -23,10 +24,10 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 a { color: inherit; }
@@ -37,8 +38,9 @@ a { color: inherit; }
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 2rem;
-  border-bottom: 2px solid var(--ink);
-  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -49,60 +51,75 @@ a { color: inherit; }
   font-size: 1.4rem;
   font-weight: 600;
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  color: var(--ink);
 }
 
-.logo span { color: var(--stamp); }
+.logo span { color: var(--gold); }
 
 nav a {
   text-decoration: none;
   margin-left: 1.75rem;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--ink);
+  color: var(--text-soft);
   border-bottom: 2px solid transparent;
   padding-bottom: 2px;
-  transition: border-color 0.2s ease;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
-nav a:hover { border-color: var(--gold); }
+nav a:hover { color: var(--ink); border-color: var(--gold); }
 
 /* ---------- Hero ---------- */
 .hero {
   max-width: 900px;
   margin: 0 auto;
-  padding: 4.5rem 2rem 3rem;
+  padding: 6rem 2rem 3.5rem;
   text-align: left;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -40px; left: 50%;
+  width: 700px; height: 500px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(212, 167, 44, 0.10) 0%, rgba(10,14,26,0) 70%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero .eyebrow {
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--stamp);
+  color: var(--gold);
   display: inline-block;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .hero h1 {
   font-family: var(--display);
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  line-height: 1.08;
-  margin: 0 0 1.2rem;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.3rem;
   font-weight: 600;
+  color: var(--ink);
 }
 
 .hero p {
   max-width: 55ch;
   color: var(--text-soft);
-  font-size: 1.08rem;
+  font-size: 1.15rem;
 }
 
 /* ---------- Journey line (signature element) ---------- */
 .journey {
   max-width: 900px;
-  margin: 2.5rem auto 4rem;
+  margin: 1.5rem auto 5rem;
   padding: 0 2rem;
 }
 
@@ -118,18 +135,18 @@ nav a:hover { border-color: var(--gold); }
   content: "";
   position: absolute;
   left: 0; right: 0; top: 50%;
-  border-top: 2px dashed var(--line);
+  border-top: 1px dashed var(--line);
   z-index: 0;
 }
 
 .stamp {
   position: relative;
   z-index: 1;
-  background: var(--paper);
-  border: 2px solid var(--ink);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
   border-radius: 50%;
-  width: 84px;
-  height: 84px;
+  width: 88px;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,36 +156,42 @@ nav a:hover { border-color: var(--gold); }
   font-size: 0.62rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  transform: rotate(-4deg);
   cursor: pointer;
   text-decoration: none;
-  color: var(--ink);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  color: var(--text-soft);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
-.stamp:nth-child(even) { transform: rotate(3deg); }
-.stamp:hover { transform: rotate(0deg) scale(1.06); border-color: var(--stamp); color: var(--stamp); }
+.stamp:hover {
+  transform: scale(1.08);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 24px rgba(212, 167, 44, 0.25);
+}
 
 .stamp strong {
   font-family: var(--display);
   font-size: 0.85rem;
   font-weight: 600;
   margin-top: 2px;
+  color: var(--ink);
 }
 
 /* ---------- Section blocks ---------- */
 .section {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 3rem 2rem;
 }
 
 .section h2 {
   font-family: var(--display);
-  font-size: 1.7rem;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 0.6rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.9rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.01em;
 }
 
 .card-grid {
@@ -178,34 +201,39 @@ nav a:hover { border-color: var(--gold); }
 }
 
 .card {
-  background: var(--paper-dim);
+  background: var(--bg-panel);
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 1.4rem;
+  border-radius: 10px;
+  padding: 1.5rem;
   text-decoration: none;
   color: var(--ink);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  background: var(--bg-panel-hover);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
 
 .card .tag {
   font-family: var(--mono);
   font-size: 0.7rem;
   color: var(--stamp);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 .card h3 {
   font-family: var(--display);
-  margin: 0.4rem 0 0.4rem;
-  font-size: 1.2rem;
+  margin: 0.5rem 0 0.5rem;
+  font-size: 1.3rem;
 }
 
-.card p { color: var(--text-soft); font-size: 0.92rem; margin: 0; }
+.card p { color: var(--text-soft); font-size: 0.94rem; margin: 0; }
 
-/* ---------- Checklist (used on country pages) ---------- */
+/* ---------- Checklist ---------- */
 .checklist {
   list-style: none;
   padding: 0;
@@ -213,23 +241,26 @@ nav a:hover { border-color: var(--gold); }
 }
 
 .checklist li {
-  padding: 0.7rem 0 0.7rem 2rem;
+  padding: 0.85rem 0 0.85rem 2rem;
   border-bottom: 1px solid var(--line);
   position: relative;
+  color: var(--text-soft);
 }
+
+.checklist li strong { color: var(--ink); }
 
 .checklist li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--stamp);
+  color: var(--gold);
   font-weight: bold;
 }
 
 /* ---------- Footer ---------- */
 footer {
-  border-top: 2px solid var(--ink);
-  padding: 2rem;
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 2rem;
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-soft);
@@ -237,8 +268,20 @@ footer {
 
 footer .disclaimer {
   max-width: 700px;
-  margin: 0 auto 0.6rem;
+  margin: 0 auto 0.8rem;
   font-size: 0.8rem;
+}
+
+/* ---------- Scroll reveal ---------- */
+.hero, .section, .card, .stamp {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero.in-view, .section.in-view, .card.in-view, .stamp.in-view {
+  opacity: 1;
+  transform: none;
 }
 
 /* ---------- Responsive ---------- */
@@ -252,4 +295,5 @@ footer .disclaimer {
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
+  .hero, .section, .card, .stamp { opacity: 1 !important; transform: none !important; }
 }
