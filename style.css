@@ -1,0 +1,255 @@
+/* ============================================
+   Study EU BD — shared stylesheet
+   Theme: passport / visa-stamp identity
+   ============================================ */
+
+:root {
+  --ink: #1B2A4A;        /* deep indigo — passport cover */
+  --paper: #F7F4EC;      /* warm paper */
+  --paper-dim: #EDE8DA;
+  --gold: #B08D57;       /* brass / visa-stamp gold */
+  --stamp: #B23A2E;      /* stamp-ink red for accents */
+  --line: #D8D1BC;
+  --text-soft: #4B5568;
+
+  --display: "Fraunces", Georgia, serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.6;
+}
+
+a { color: inherit; }
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.logo span { color: var(--stamp); }
+
+nav a {
+  text-decoration: none;
+  margin-left: 1.75rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+nav a:hover { border-color: var(--gold); }
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 3rem;
+  text-align: left;
+}
+
+.hero .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stamp);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  margin: 0 0 1.2rem;
+  font-weight: 600;
+}
+
+.hero p {
+  max-width: 55ch;
+  color: var(--text-soft);
+  font-size: 1.08rem;
+}
+
+/* ---------- Journey line (signature element) ---------- */
+.journey {
+  max-width: 900px;
+  margin: 2.5rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.journey-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.journey-track::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  border-top: 2px dashed var(--line);
+  z-index: 0;
+}
+
+.stamp {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stamp:nth-child(even) { transform: rotate(3deg); }
+.stamp:hover { transform: rotate(0deg) scale(1.06); border-color: var(--stamp); color: var(--stamp); }
+
+.stamp strong {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ---------- Section blocks ---------- */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.section h2 {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.4rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+.card .tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card h3 {
+  font-family: var(--display);
+  margin: 0.4rem 0 0.4rem;
+  font-size: 1.2rem;
+}
+
+.card p { color: var(--text-soft); font-size: 0.92rem; margin: 0; }
+
+/* ---------- Checklist (used on country pages) ---------- */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  padding: 0.7rem 0 0.7rem 2rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--stamp);
+  font-weight: bold;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 2px solid var(--ink);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+footer .disclaimer {
+  max-width: 700px;
+  margin: 0 auto 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .site-header { flex-direction: column; gap: 0.75rem; padding: 1rem; }
+  nav a { margin: 0 0.6rem; }
+  .journey-track { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+  .journey-track::before { display: none; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
